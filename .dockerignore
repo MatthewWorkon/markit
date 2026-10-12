@@ -1,0 +1,12 @@
+node_modules
+server/node_modules
+server/dist
+dist
+data
+docs
+scripts
+*.tar
+*.md
+.zcodeignore
+.DS_Store
+downloads

@@ -1,0 +1,76 @@
+/* Markit · 动效原语
+   原则：动效只用于「进入 / 离开 / 反馈」，只动 transform 和 opacity，
+   全局 ≤ 600ms，respect reduced-motion。 */
+
+/* 入场：淡入 + 轻微上移（页面、区块） */
+@keyframes mk-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 入场：淡入 + 缩放（弹窗、浮层，带一丝弹性） */
+@keyframes mk-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 骨架屏微光 */
+@keyframes mk-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.mk-anim-fade-up {
+  animation: mk-fade-up var(--mk-dur-slow) var(--mk-ease-out) both;
+}
+
+.mk-anim-pop-in {
+  animation: mk-pop-in var(--mk-dur) var(--mk-ease-spring) both;
+}
+
+/* 骨架块 */
+.mk-skeleton {
+  border-radius: var(--mk-radius-sm);
+  background: linear-gradient(
+    100deg,
+    var(--mk-color-bg-subtle) 40%,
+    var(--mk-color-skeleton-hi) 50%,
+    var(--mk-color-bg-subtle) 60%
+  );
+  background-size: 200% 100%;
+  animation: mk-shimmer 1.6s linear infinite;
+}
+
+/* 卡片网格交错入场（配合 --i 索引变量，前 12 张有延迟，其后立即） */
+.mk-stagger {
+  animation: mk-fade-up var(--mk-dur-slow) var(--mk-ease-out) both;
+  animation-delay: calc(min(var(--i), 12) * 40ms);
+}
+
+/* 无障碍：用户偏好减弱动效时全部关闭 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

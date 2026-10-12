@@ -1,0 +1,17 @@
+# Markit · Docker Compose
+# 用法见 README.md
+services:
+  markit:
+    build:
+      context: .
+    image: markit:v0.4.13
+    container_name: markit
+    ports:
+      - '8340:8340' # 左边是访问端口，冲突可改，如 '18340:8340'
+    volumes:
+      - ./data:/app/data # 数据库 + CSV 镜像 + 封面图全部在这里，备份=备份这个文件夹
+    environment:
+      - TZ=Asia/Shanghai
+      # - MARKIT_ADMIN_PASSWORD=改成你的初始管理员密码   # 可选：自定义 admin 初始密码
+      # - MARKIT_SEED_DEMO=1                            # 0 = 不创建演示账号
+    restart: unless-stopped

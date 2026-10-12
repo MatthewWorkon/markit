@@ -1,0 +1,15 @@
+node_modules
+server/node_modules
+dist/
+server/dist/
+data/
+*.log
+.DS_Store
+.zcodeignore
+markit-deploy*.zip
+downloads/
+
+# 内部管理目录与个人工作流（开源仓库不含，仅本地保留）
+0[1-9]-*/
+SKILL.md
+*.tsbuildinfo

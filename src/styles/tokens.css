@@ -1,0 +1,192 @@
+/* ============================================================
+   Markit Design Tokens · v0.1（视觉过渡稿基线，PRD §5.5）
+   ------------------------------------------------------------
+   设计语言：高级实用主义极简（编辑风产品 UI）
+   · 暖白画布 + 白卡浮层 + 发丝线边框，单一钴蓝强调色
+   · 字体：Geist（拉丁）+ Noto Sans SC（中文）+ Geist Mono（URL/数字）
+   · 圆角文档化规则：按钮/徽标/搜索框 = 全圆 pill；
+     输入框/菜单项 = 8px；卡片/磁贴 = 12px；弹窗/浮层 = 16px
+   · 阴影：超弥散、暖色低透明度，禁止黑色硬阴影
+   ============================================================ */
+
+:root {
+  /* ---- Color · 画布与表面 ---- */
+  --mk-color-bg-base: #fafaf8; /* 页面画布 · 暖骨白 */
+  --mk-color-bg-sidebar: #fafaf8; /* 侧栏与画布同面，以发丝线分界 */
+  --mk-color-bg-card: #ffffff; /* 卡片 */
+  --mk-color-bg-raised: #ffffff; /* 弹窗/浮层/输入框 */
+  --mk-color-bg-subtle: #f2f2ef; /* 次级面（选中底、hover 底） */
+  --mk-color-bg-overlay: rgba(26, 26, 23, 0.36); /* 模态遮罩 */
+
+  /* ---- Color · 文字（暖灰阶） ---- */
+  --mk-color-text-primary: #1a1a17;
+  --mk-color-text-secondary: #55554f;
+  --mk-color-text-muted: #83837c;
+  --mk-color-text-faint: #a9a9a1;
+  --mk-color-text-inverse: #fafaf8;
+
+  /* ---- Color · 边框 ---- */
+  --mk-color-border-default: #e8e6e1; /* 发丝线 */
+  --mk-color-border-strong: #d6d4ce;
+  --mk-color-border-accent: #2e5be6;
+
+  /* ---- Color · 品牌强调（钴蓝，单一强调色） ---- */
+  --mk-color-accent: #2e5be6;
+  --mk-color-accent-hover: #2549c4;
+  --mk-color-accent-active: #1d3ba0;
+  --mk-color-accent-soft-bg: #ebf0fe;
+  --mk-color-accent-soft-text: #1d46c4;
+
+  /* ---- Color · 状态（同色系淡底深字） ---- */
+  --mk-color-status-success-bg: #e9f5ec;
+  --mk-color-status-success-text: #1e7b34;
+  --mk-color-status-warning-bg: #fcf3e3;
+  --mk-color-status-warning-text: #96690b;
+  --mk-color-status-danger-bg: #fcebea;
+  --mk-color-status-danger-text: #c23830;
+  --mk-color-status-danger: #d64545;
+
+  /* ---- Color · VPN 徽标 ---- */
+  --mk-color-badge-vpn-bg: #e3edff;
+  --mk-color-badge-vpn-text: #1d4fc8;
+
+  /* ---- Color · 标签色板（淡彩，按名称哈希分配） ---- */
+  --mk-tag-1-bg: #e9f0fb;
+  --mk-tag-1-text: #35569c;
+  --mk-tag-2-bg: #e9f5ec;
+  --mk-tag-2-text: #2c7a42;
+  --mk-tag-3-bg: #faf0e3;
+  --mk-tag-3-text: #96690b;
+  --mk-tag-4-bg: #f9e9f2;
+  --mk-tag-4-text: #9c4473;
+  --mk-tag-5-bg: #efecf9;
+  --mk-tag-5-text: #55489c;
+
+  /* ---- Spacing（4px 基准） ---- */
+  --mk-space-1: 4px;
+  --mk-space-2: 8px;
+  --mk-space-3: 12px;
+  --mk-space-4: 16px;
+  --mk-space-5: 20px;
+  --mk-space-6: 24px;
+  --mk-space-7: 32px;
+  --mk-space-8: 40px;
+
+  /* ---- Radius（文档化混合系统，见文件头注释） ---- */
+  --mk-radius-sm: 8px; /* 输入框 / 菜单项 */
+  --mk-radius-md: 12px; /* 卡片 / 磁贴 */
+  --mk-radius-lg: 16px; /* 弹窗 / 浮层 */
+  --mk-radius-full: 999px; /* 按钮 / 徽标 / 搜索框 */
+
+  /* ---- Font ---- */
+  --mk-font-family: 'Geist', 'Noto Sans SC', -apple-system, BlinkMacSystemFont,
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --mk-font-family-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono',
+    Menlo, monospace;
+
+  --mk-font-size-xs: 11px; /* 徽标 / 辅助角标 */
+  --mk-font-size-sm: 12px; /* 次要说明 / URL */
+  --mk-font-size-md: 13px; /* 正文 */
+  --mk-font-size-lg: 14px; /* 卡片标题 / 按钮 */
+  --mk-font-size-xl: 16px; /* 区块标题 */
+  --mk-font-size-2xl: 19px; /* 页面标题 */
+  --mk-font-size-3xl: 26px; /* 登录页标题 */
+
+  /* ---- Shadow（超弥散 · 暖色低透明度） ---- */
+  --mk-shadow-card: 0 1px 2px rgba(26, 26, 23, 0.03),
+    0 2px 8px rgba(26, 26, 23, 0.03);
+  --mk-shadow-card-hover: 0 2px 4px rgba(26, 26, 23, 0.04),
+    0 8px 24px rgba(26, 26, 23, 0.08);
+  --mk-shadow-popover: 0 4px 12px rgba(26, 26, 23, 0.06),
+    0 16px 48px rgba(26, 26, 23, 0.14);
+  --mk-shadow-modal: 0 8px 24px rgba(26, 26, 23, 0.08),
+    0 32px 80px rgba(26, 26, 23, 0.18);
+  --mk-shadow-focus: 0 0 0 3px rgba(46, 91, 230, 0.16);
+
+  /* ---- 其他此前散落硬编码的色值（统一入 token） ---- */
+  --mk-color-bg-topbar: rgba(250, 250, 248, 0.86);
+  --mk-color-status-danger-bg-hover: #f7d9d6;
+  --mk-color-skeleton-hi: #e9e9e5;
+  --mk-color-icon-invert-filter: none; /* 深色填充品牌图标（GitHub 等）暗色下反色 */
+
+  /* ---- Motion ---- */
+  --mk-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --mk-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --mk-dur-fast: 150ms;
+  --mk-dur: 300ms;
+  --mk-dur-slow: 500ms;
+
+  /* ---- Z-index（克制，全局仅此四层） ---- */
+  --mk-z-dropdown: 1000;
+  --mk-z-modal: 1100;
+  --mk-z-toast: 1200;
+
+  /* ---- 布局常量 ---- */
+  --mk-sidebar-width: 264px;
+  --mk-topbar-height: 60px;
+}
+
+/* ============================================================
+   暗色主题（BK-111）· 暖石墨底，禁纯黑；彩色面相对浅色版降饱和
+   ============================================================ */
+:root[data-theme='dark'] {
+  --mk-color-bg-base: #141412;
+  --mk-color-bg-sidebar: #141412;
+  --mk-color-bg-card: #1d1d1a;
+  --mk-color-bg-raised: #1f1f1c;
+  --mk-color-bg-subtle: #262622;
+  --mk-color-bg-overlay: rgba(0, 0, 0, 0.55);
+
+  --mk-color-text-primary: #f0efea;
+  --mk-color-text-secondary: #a8a79f;
+  --mk-color-text-muted: #7c7b73;
+  --mk-color-text-faint: #5c5b54;
+  --mk-color-text-inverse: #1a1a17;
+
+  --mk-color-border-default: #2e2d28;
+  --mk-color-border-strong: #3e3d36;
+  --mk-color-border-accent: #3d6bf0;
+
+  --mk-color-accent: #3d6bf0;
+  --mk-color-accent-hover: #5a85f5;
+  --mk-color-accent-active: #2e54c4;
+  --mk-color-accent-soft-bg: #1e2a54;
+  --mk-color-accent-soft-text: #9db4f5;
+
+  --mk-color-status-success-bg: #17301e;
+  --mk-color-status-success-text: #6fcf8e;
+  --mk-color-status-warning-bg: #33270f;
+  --mk-color-status-warning-text: #e0b45c;
+  --mk-color-status-danger-bg: #3a1d1a;
+  --mk-color-status-danger-text: #f08c84;
+  --mk-color-status-danger-bg-hover: #4a241f;
+  --mk-color-status-danger: #e06b62;
+
+  --mk-color-badge-vpn-bg: #1d2c4f;
+  --mk-color-badge-vpn-text: #8fb0f0;
+
+  --mk-tag-1-bg: #1c2740;
+  --mk-tag-1-text: #8fa8dc;
+  --mk-tag-2-bg: #16291c;
+  --mk-tag-2-text: #7fc796;
+  --mk-tag-3-bg: #2c2312;
+  --mk-tag-3-text: #d3a94f;
+  --mk-tag-4-bg: #331e2a;
+  --mk-tag-4-text: #d093b8;
+  --mk-tag-5-bg: #241f3b;
+  --mk-tag-5-text: #a79bdf;
+
+  --mk-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.28),
+    0 2px 8px rgba(0, 0, 0, 0.22);
+  --mk-shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.38);
+  --mk-shadow-popover: 0 4px 12px rgba(0, 0, 0, 0.35),
+    0 16px 48px rgba(0, 0, 0, 0.5);
+  --mk-shadow-modal: 0 8px 24px rgba(0, 0, 0, 0.4),
+    0 32px 80px rgba(0, 0, 0, 0.55);
+  --mk-shadow-focus: 0 0 0 3px rgba(61, 107, 240, 0.32);
+
+  --mk-color-bg-topbar: rgba(20, 20, 18, 0.84);
+  --mk-color-skeleton-hi: #20201c;
+  --mk-color-icon-invert-filter: invert(0.92) hue-rotate(180deg);
+}
